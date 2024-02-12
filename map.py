@@ -27,9 +27,8 @@ class Map():
 
     def increase(self):
         if self.scale > 0.003:
-            self.scale -= 0.003
+            self.scale -= 0.005
 
     def reduce(self):
         if self.scale < 0.03:
-            self.scale += 0.003
-
+            self.scale += 0.005

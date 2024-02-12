@@ -27,6 +27,7 @@ while True:
             if event.key == pygame.K_PAGEDOWN:
                 map.reduce()
                 map_file = map.display_map()
+
     screen.blit(pygame.image.load(map_file), (30, 250))
     pygame.display.flip()
     fpsClock.tick(fps)
