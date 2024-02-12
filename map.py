@@ -3,22 +3,27 @@ import sys
 import requests
 
 
-def display_map(coords, scale):
-    coords_x = 2.294526
-    coords_y = 48.858244
-    scale = 0.002
-    map_request = f"http://static-maps.yandex.ru/1.x/?ll={coords_x},{coords_y}&spn={scale},{scale}&l=map"
-    response = requests.get(map_request)
+class Map():
+    def __init__(self, coords, scale):
+        self.coords_x = coords[0]
+        self.coords_y = coords[1]
+        self.scale = scale
+        self.map_request = f"http://static-maps.yandex.ru/1.x/?ll={self.coords_x},{self.coords_y}&spn={self.scale},{self.scale}&l=map"
+        self.response = requests.get(self.map_request)
 
-    if not response:
-        print("Ошибка выполнения запроса:")
-        print(map_request)
-        print("Http статус:", response.status_code, "(", response.reason, ")")
-        sys.exit(1)
+    def display_map(self):
+        if not self.response:
+            print("Ошибка выполнения запроса:")
+            print(self.map_request)
+            print("Http статус:", self.response.status_code, "(", self.response.reason, ")")
+            sys.exit(1)
 
-    # Запишем полученное изображение в файл.
-    map_file = "map.png"
-    with open(map_file, "wb") as file:
-        file.write(response.content)
+        # Запишем полученное изображение в файл.
+        map_file = "map.png"
+        with open(map_file, "wb") as file:
+            file.write(self.response.content)
 
-    return map_file
+        return map_file
+
+    def increase(self):
+       pass

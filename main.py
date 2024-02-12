@@ -3,9 +3,8 @@ import os
 import pygame
 from map import *
 
-map_request = "http://static-maps.yandex.ru/1.x/?ll=37.530887,55.703118&spn=0.002,0.002&l=map"
-response = requests.get(map_request)
-map_file = display_map((0, 0), 0)
+map = Map((2.294526, 48.858244), 0.002)
+map_file = map.display_map()
 # Инициализируем pygame
 pygame.init()
 
@@ -17,7 +16,12 @@ screen.blit(pygame.image.load(map_file), (30, 250))
 pygame.display.flip()
 while pygame.event.wait().type != pygame.QUIT:
     for event in pygame.event.get():
-        pass
+        if event.type == pygame.QUIT:
+            pygame.quit()
+            sys.exit()
+        if event.type == pygame.K_PAGEUP:
+            pass
+
 pygame.quit()
 
 # Удаляем за собой файл с изображением.
